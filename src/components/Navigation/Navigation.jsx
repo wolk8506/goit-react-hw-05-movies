@@ -6,14 +6,10 @@ export const Navigation = () => {
   return (
     <header>
       <nav className={s.navigation}>
-        <NavLink to="./" className={s.item} activeClassName={s.activeItem}>
+        <NavLink to="./" className={s.item}>
           Home
         </NavLink>
-        <NavLink
-          to="./movies"
-          className={s.item}
-          activeClassName={s.activeItem}
-        >
+        <NavLink to="./movies" className={s.item}>
           Movies
         </NavLink>
       </nav>

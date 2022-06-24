@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import s from 'components/Pages/Pages.module.css';
 import PropTypes from 'prop-types';
 
-export const Movies = ({ onClick, BASE_URL, API_KEY }) => {
+export const Movies = ({ BASE_URL, API_KEY }) => {
   const [movies, setMovies] = useState('');
   const [searchMovies, setSearchMovies] = useState('');
   const [queryMovie, setQueryMovie] = useState('');
@@ -41,10 +41,6 @@ export const Movies = ({ onClick, BASE_URL, API_KEY }) => {
   };
 
   useEffect(() => {
-    onClick(`${location.pathname}${location.search}`);
-  });
-
-  useEffect(() => {
     if (searchMovies === '') {
       return;
     }
@@ -52,7 +48,7 @@ export const Movies = ({ onClick, BASE_URL, API_KEY }) => {
     axios.get(URL).then(response => {
       setQueryMovie(response.data.results);
     });
-  }, [URL, location.pathname, location.search, searchMovies]);
+  }, [URL, searchMovies]);
 
   return (
     <div className={s.movies_block}>
@@ -72,7 +68,9 @@ export const Movies = ({ onClick, BASE_URL, API_KEY }) => {
         {queryMovie &&
           queryMovie.map(m => (
             <li key={m.id}>
-              <Link to={`/movies/${m.id}`}>{m.title}</Link>
+              <Link to={`/movies/${m.id}`} state={{ from: location }}>
+                {m.title}
+              </Link>
             </li>
           ))}
       </ul>
@@ -83,5 +81,5 @@ export const Movies = ({ onClick, BASE_URL, API_KEY }) => {
 Movies.propTypes = {
   BASE_URL: PropTypes.string.isRequired,
   API_KEY: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  // onClick: PropTypes.func.isRequired,
 };

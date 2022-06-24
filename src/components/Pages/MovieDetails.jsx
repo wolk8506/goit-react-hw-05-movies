@@ -1,16 +1,19 @@
 import axios from 'axios';
 import { Suspense, useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { Loader } from 'components/Pages/Loader';
 import movieImg from 'components/img/movie.jpg';
 import s from 'components/Pages/Pages.module.css';
 import PropTypes from 'prop-types';
 
-export const MovieDetails = ({ btnBack, BASE_URL, API_KEY }) => {
+export const MovieDetails = ({ BASE_URL, API_KEY }) => {
   const { movieId } = useParams();
   const URL = `${BASE_URL}movie/${movieId}?api_key=${API_KEY}&language=en-EN`;
   const BASE_SRC = 'https://image.tmdb.org/t/p/w500';
   const [movie, setMovie] = useState([]);
+  const location = useLocation();
+  const [btnBack, setBtnBack] = useState('/');
+  const [btnBackOn, setBtnBackOn] = useState(true);
 
   useEffect(() => {
     setMovie([]);
@@ -19,10 +22,17 @@ export const MovieDetails = ({ btnBack, BASE_URL, API_KEY }) => {
     });
   }, [URL]);
 
+  useEffect(() => {
+    if (btnBackOn) {
+      setBtnBackOn(false);
+      setBtnBack(location?.state?.from ?? '/');
+    }
+  }, [btnBackOn, location?.state?.from]);
+
   return (
     <>
       <Link to={btnBack} className={s.link_back}>
-        &#129044; Back
+        &#129044; Go Back
       </Link>
       {movie && (
         <div className={s.movieblock}>
@@ -71,5 +81,4 @@ export const MovieDetails = ({ btnBack, BASE_URL, API_KEY }) => {
 MovieDetails.propTypes = {
   BASE_URL: PropTypes.string.isRequired,
   API_KEY: PropTypes.string.isRequired,
-  btnBack: PropTypes.string.isRequired,
 };

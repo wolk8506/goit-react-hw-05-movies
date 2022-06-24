@@ -16,6 +16,7 @@ export const Cast = ({ BASE_URL, API_KEY }) => {
       setReviews(response.data.cast);
     });
   }, [URL]);
+
   return (
     reviews &&
     reviews.map(c => (

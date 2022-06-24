@@ -5,15 +5,15 @@ import s from 'components/Pages/Pages.module.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-export const Home = ({ onClick, BASE_URL, API_KEY }) => {
+export const Home = ({ BASE_URL, API_KEY }) => {
   const [popularMov, setPopularMov] = useState([]);
   const URL = `${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-EN&page=1`;
+
   useEffect(() => {
-    onClick('/');
     axios.get(URL).then(response => {
       setPopularMov(response.data.results);
     });
-  }, [URL, onClick]);
+  }, [URL]);
 
   return (
     <>
@@ -32,5 +32,4 @@ export const Home = ({ onClick, BASE_URL, API_KEY }) => {
 Home.propTypes = {
   BASE_URL: PropTypes.string.isRequired,
   API_KEY: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
 };

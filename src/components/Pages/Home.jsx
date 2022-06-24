@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import s from 'components/Pages/Pages.module.css';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const Home = ({ onClick, BASE_URL, API_KEY }) => {
   const [popularMov, setPopularMov] = useState([]);
@@ -26,4 +27,10 @@ export const Home = ({ onClick, BASE_URL, API_KEY }) => {
       </ul>
     </>
   );
+};
+
+Home.propTypes = {
+  BASE_URL: PropTypes.string.isRequired,
+  API_KEY: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

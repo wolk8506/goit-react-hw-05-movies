@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import person from 'components/img/person.png';
+import PropTypes from 'prop-types';
 
 export const Cast = ({ BASE_URL, API_KEY }) => {
   const { movieId } = useParams();
@@ -29,4 +30,9 @@ export const Cast = ({ BASE_URL, API_KEY }) => {
       </div>
     ))
   );
+};
+
+Cast.propTypes = {
+  BASE_URL: PropTypes.string.isRequired,
+  API_KEY: PropTypes.string.isRequired,
 };

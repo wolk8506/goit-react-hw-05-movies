@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ImSearch } from 'react-icons/im';
 import { toast } from 'react-toastify';
 import s from 'components/Pages/Pages.module.css';
+import PropTypes from 'prop-types';
 
 export const Movies = ({ onClick, BASE_URL, API_KEY }) => {
   const [movies, setMovies] = useState('');
@@ -41,14 +42,13 @@ export const Movies = ({ onClick, BASE_URL, API_KEY }) => {
 
   useEffect(() => {
     onClick(`${location.pathname}${location.search}`);
-    console.log(`${location.pathname}${location.search}`);
   });
 
   useEffect(() => {
     if (searchMovies === '') {
       return;
     }
-    console.log(`${location.pathname}${location.search}`);
+
     axios.get(URL).then(response => {
       setQueryMovie(response.data.results);
     });
@@ -78,4 +78,10 @@ export const Movies = ({ onClick, BASE_URL, API_KEY }) => {
       </ul>
     </div>
   );
+};
+
+Movies.propTypes = {
+  BASE_URL: PropTypes.string.isRequired,
+  API_KEY: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

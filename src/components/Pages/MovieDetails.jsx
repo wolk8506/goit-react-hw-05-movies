@@ -4,6 +4,7 @@ import { Link, Outlet, useParams } from 'react-router-dom';
 import { Loader } from 'components/Pages/Loader';
 import movieImg from 'components/img/movie.jpg';
 import s from 'components/Pages/Pages.module.css';
+import PropTypes from 'prop-types';
 
 export const MovieDetails = ({ btnBack, BASE_URL, API_KEY }) => {
   const { movieId } = useParams();
@@ -65,4 +66,10 @@ export const MovieDetails = ({ btnBack, BASE_URL, API_KEY }) => {
       </div>
     </>
   );
+};
+
+MovieDetails.propTypes = {
+  BASE_URL: PropTypes.string.isRequired,
+  API_KEY: PropTypes.string.isRequired,
+  btnBack: PropTypes.string.isRequired,
 };

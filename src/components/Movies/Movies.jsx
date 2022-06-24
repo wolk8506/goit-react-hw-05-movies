@@ -1,13 +1,11 @@
 import axios from 'axios';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ImSearch } from 'react-icons/im';
 import { toast } from 'react-toastify';
+import s from 'components/Movies/Movies.module.css';
 
-export const Movies = ({ onClick }) => {
-  const BASE_URL = 'https://api.themoviedb.org/3/';
-  const API_KEY = 'a8df323e9ca157a6f58df54190ee006c';
+export const Movies = ({ onClick, BASE_URL, API_KEY }) => {
   const [movies, setMovies] = useState('');
   const [searchMovies, setSearchMovies] = useState('');
   const [queryMovie, setQueryMovie] = useState('');
@@ -57,8 +55,8 @@ export const Movies = ({ onClick }) => {
   }, [URL, location.pathname, location.search, searchMovies]);
 
   return (
-    <div>
-      <form>
+    <div className={s.movies_block}>
+      <form className={s.form}>
         <input
           type="text"
           placeholder="Search images and photos"
@@ -70,7 +68,7 @@ export const Movies = ({ onClick }) => {
           <span>Search</span>
         </button>
       </form>
-      <ul>
+      <ul className={s.moviesList}>
         {queryMovie &&
           queryMovie.map(m => (
             <li key={m.id}>

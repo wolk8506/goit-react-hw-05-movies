@@ -3,6 +3,8 @@ import { useState, lazy, Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Loader } from './Loader/Loader';
+const BASE_URL = 'https://api.themoviedb.org/3/';
+const API_KEY = 'a8df323e9ca157a6f58df54190ee006c';
 
 const Home = lazy(() =>
   import('./Home/Home').then(module => ({ default: module.Home }))
@@ -46,7 +48,16 @@ export const App = () => {
         <Routes>
           {/* <Route index element={<Home onClick={btnBackChange} />} /> */}
           <Route path="/" element={<Home onClick={btnBackChange} />} />
-          <Route path="/movies" element={<Movies onClick={btnBackChange} />} />
+          <Route
+            path="/movies"
+            element={
+              <Movies
+                onClick={btnBackChange}
+                BASE_URL={BASE_URL}
+                API_KEY={API_KEY}
+              />
+            }
+          />
           <Route
             path="/movies/:movieId/*"
             element={<MovieDatails btnBack={btnBack} />}

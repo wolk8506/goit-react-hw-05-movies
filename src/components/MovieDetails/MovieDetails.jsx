@@ -52,7 +52,7 @@ export const MovieDatails = ({ btnBack }) => {
           </div>
         </div>
       )}
-      <div>
+      <div className={s.infoblock}>
         <h3>Additional information</h3>
         <ul>
           <li>

@@ -12,3 +12,7 @@
     color: rgb(0, 76, 255);
     font-size: 24px;
 }
+.infoblock{
+    border-bottom: 1px solid #000;
+    padding: 15px;
+}

@@ -1,0 +1,106 @@
+.movName {
+    display: flex;
+    font-size: 18px;
+}
+
+.movList .movName+.movName {
+    margin-top: 10px;
+
+}
+
+.movList {
+    padding: 15px;
+}
+
+/*  */
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/*  */
+/*  */
+.movieblock {
+    display: flex;
+    border-bottom: 1px solid #000;
+    padding: 15px;
+}
+
+.img {
+    margin-right: 20px;
+}
+
+.link_back {
+    text-decoration: none;
+    padding: 15px;
+    color: rgb(0, 76, 255);
+    font-size: 24px;
+}
+
+.infoblock {
+    border-bottom: 1px solid #000;
+    padding: 15px;
+}
+/*  */
+/*  */
+.navigation {
+    border-bottom: 1px solid #000000;
+    padding: 15px;
+    color: #000000;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+
+}
+
+.navigation .item+.item {
+    margin-left: 20px;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* .item .active {
+
+color: rgb(0, 145, 255);
+} */
+a:focus,
+a:hover {
+    color: rgb(0, 145, 255);
+}
+/*  */
+/* Movies */
+.form {
+    display: flex;
+    margin-bottom: 30px;
+
+}
+
+.form input {
+    font-size: 20px;
+}
+
+.form button {
+    font-size: 20px;
+    margin: 0;
+    /* padding: 0; */
+}
+
+.form span {
+    display: none;
+}
+
+
+.movies_block {
+    padding: 15px;
+}
+
+.moviesList li+li {
+    margin-top: 10px;
+}
+/*  */

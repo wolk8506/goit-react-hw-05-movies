@@ -1,25 +1,18 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import s from 'components/Home/Home.module.css';
+import s from 'components/Pages/Pages.module.css';
 import { Link } from 'react-router-dom';
 
-const BASE_URL = 'https://api.themoviedb.org/3/';
-const API_KEY = 'a8df323e9ca157a6f58df54190ee006c';
-
-const URL = `${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-EN&page=1`;
-
-export const Home = ({ onClick }) => {
+export const Home = ({ onClick, BASE_URL, API_KEY }) => {
   const [popularMov, setPopularMov] = useState([]);
-  // console.log(useRoutes);
-
+  const URL = `${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-EN&page=1`;
   useEffect(() => {
     onClick('/');
     axios.get(URL).then(response => {
       setPopularMov(response.data.results);
-      // console.log(response.data.results);
     });
-  }, [onClick]);
+  }, [URL, onClick]);
 
   return (
     <>

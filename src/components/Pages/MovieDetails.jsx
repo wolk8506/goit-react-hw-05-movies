@@ -1,16 +1,12 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Link, Route, Routes, useParams } from 'react-router-dom';
-import { Cast } from 'components/Cast/Cast';
-import { Reviews } from 'components/Reviews/Reviews';
-import movieImg from 'components/MovieDetails/movie.jpg';
-import s from 'components/MovieDetails/MovieDetails.module.css';
+import { Suspense, useEffect, useState } from 'react';
+import { Link, Outlet, useParams } from 'react-router-dom';
+import { Loader } from 'components/Pages/Loader';
+import movieImg from 'components/img/movie.jpg';
+import s from 'components/Pages/Pages.module.css';
 
-export const MovieDatails = ({ btnBack }) => {
+export const MovieDetails = ({ btnBack, BASE_URL, API_KEY }) => {
   const { movieId } = useParams();
-  // console.log(movieId);
-  const BASE_URL = 'https://api.themoviedb.org/3/';
-  const API_KEY = 'a8df323e9ca157a6f58df54190ee006c';
   const URL = `${BASE_URL}movie/${movieId}?api_key=${API_KEY}&language=en-EN`;
   const BASE_SRC = 'https://image.tmdb.org/t/p/w500';
   const [movie, setMovie] = useState([]);
@@ -19,7 +15,6 @@ export const MovieDatails = ({ btnBack }) => {
     setMovie([]);
     axios.get(URL).then(response => {
       setMovie(response.data);
-      // console.log(response);
     });
   }, [URL]);
 
@@ -64,10 +59,9 @@ export const MovieDatails = ({ btnBack }) => {
         </ul>
       </div>
       <div>
-        <Routes>
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
-        </Routes>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </div>
     </>
   );

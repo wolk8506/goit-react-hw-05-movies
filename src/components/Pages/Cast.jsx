@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import person from 'components/Reviews/person.png';
+import person from 'components/img/person.png';
 
-export const Cast = () => {
+export const Cast = ({ BASE_URL, API_KEY }) => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
-  const URL = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=a8df323e9ca157a6f58df54190ee006c&language=en-US`;
+  const URL = `${BASE_URL}movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`;
   const BASE_SRC = 'https://image.tmdb.org/t/p/w500';
 
   useEffect(() => {

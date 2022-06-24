@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ImSearch } from 'react-icons/im';
 import { toast } from 'react-toastify';
-import s from 'components/Movies/Movies.module.css';
+import s from 'components/Pages/Pages.module.css';
 
 export const Movies = ({ onClick, BASE_URL, API_KEY }) => {
   const [movies, setMovies] = useState('');
@@ -12,7 +12,7 @@ export const Movies = ({ onClick, BASE_URL, API_KEY }) => {
   const location = useLocation();
   const history = useNavigate();
 
-  const URL = `${BASE_URL}search/movie${searchMovies}&api_key=${API_KEY}&language=en-EN&page=1&include_adult=false&page=1`;
+  const URL = `${BASE_URL}search/movie${searchMovies}&api_key=${API_KEY}&language=en-EN&page=1&include_adult=false`;
 
   useEffect(() => {
     setSearchMovies(location.search);

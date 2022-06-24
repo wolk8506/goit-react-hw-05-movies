@@ -1,5 +1,5 @@
 import { Oval } from 'react-loader-spinner';
-import s from 'components/Loader/Loader.module.css';
+import s from 'components/Pages/Pages.module.css';
 
 export const Loader = () => {
   return (

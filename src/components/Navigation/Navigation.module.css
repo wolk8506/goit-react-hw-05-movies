@@ -1,12 +1,26 @@
 .navigation{
     border-bottom: 1px solid #000000;
     padding: 15px;
+    color: #000000;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 700;
     
 }
 .navigation .item + .item{
     margin-left: 20px;
 }
-.item{
+ a{
     color: #000000;
     text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+}
+/* .item .active {
+
+color: rgb(0, 145, 255);
+} */
+a:focus,
+a:hover{
+    color: rgb(0, 145, 255);
 }

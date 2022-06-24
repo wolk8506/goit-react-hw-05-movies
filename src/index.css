@@ -14,9 +14,9 @@ code {
     monospace;
 }
 
-
-
+li{
+  list-style-type: none;
+}
 .active {
-
   color: rgb(0, 145, 255);
 }

@@ -1,0 +1,12 @@
+.movName{
+    display: flex;
+    font-size: 18px;
+}
+
+.movList .movName + .movName{
+    margin-top: 10px;
+
+}
+.movList{
+    padding: 15px;
+}

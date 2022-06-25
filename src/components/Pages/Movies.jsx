@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { ImSearch } from 'react-icons/im';
 import { toast } from 'react-toastify';
 import s from 'components/Pages/Pages.module.css';
@@ -9,15 +9,18 @@ import PropTypes from 'prop-types';
 export const Movies = ({ BASE_URL, API_KEY }) => {
   const [movies, setMovies] = useState('');
   const [searchMovies, setSearchMovies] = useState('');
-  const [queryMovie, setQueryMovie] = useState('');
+  const [renderMovie, setRenderMovie] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  const history = useNavigate();
-
-  const URL = `${BASE_URL}search/movie${searchMovies}&api_key=${API_KEY}&language=en-EN&page=1&include_adult=false`;
+  const URL = `${BASE_URL}search/movie?query=${searchMovies}&api_key=${API_KEY}&language=en-EN&page=1&include_adult=false`;
+  const query = searchParams.get('query');
 
   useEffect(() => {
-    setSearchMovies(location.search);
-  }, [location.search]);
+    if (query === null) {
+      return;
+    }
+    setSearchMovies(query);
+  }, [query]);
 
   const handleNameChange = e => {
     setMovies(e.currentTarget.value.toLowerCase());
@@ -31,12 +34,8 @@ export const Movies = ({ BASE_URL, API_KEY }) => {
       return;
     }
 
-    history({
-      ...location,
-      search: `query=${movies}`,
-    });
-
-    setSearchMovies(`?query=${movies}`);
+    setSearchParams({ query: movies });
+    setSearchMovies(movies);
     setMovies('');
   };
 
@@ -46,7 +45,7 @@ export const Movies = ({ BASE_URL, API_KEY }) => {
     }
 
     axios.get(URL).then(response => {
-      setQueryMovie(response.data.results);
+      setRenderMovie(response.data.results);
     });
   }, [URL, searchMovies]);
 
@@ -65,8 +64,8 @@ export const Movies = ({ BASE_URL, API_KEY }) => {
         </button>
       </form>
       <ul className={s.moviesList}>
-        {queryMovie &&
-          queryMovie.map(m => (
+        {renderMovie &&
+          renderMovie.map(m => (
             <li key={m.id}>
               <Link to={`/movies/${m.id}`} state={{ from: location }}>
                 {m.title}
@@ -81,5 +80,4 @@ export const Movies = ({ BASE_URL, API_KEY }) => {
 Movies.propTypes = {
   BASE_URL: PropTypes.string.isRequired,
   API_KEY: PropTypes.string.isRequired,
-  // onClick: PropTypes.func.isRequired,
 };

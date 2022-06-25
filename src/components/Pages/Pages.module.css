@@ -54,21 +54,26 @@
 
 }
 
-.navigation .item+.item {
+.navigation a+a {
     margin-left: 20px;
 }
 
-a {
-    color: #000000;
+
+.navigation a {
+    
     text-decoration: none;
     font-size: 20px;
     font-weight: 700;
 }
 
-/* .item .active {
+.item{
+color: #000000;
+}
+
+.active {
 
 color: rgb(0, 145, 255);
-} */
+}
 a:focus,
 a:hover {
     color: rgb(0, 145, 255);
